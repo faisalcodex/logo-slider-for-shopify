@@ -1,0 +1,161 @@
+<style>
+  
+  
+  .slick-slider .slick-dots li{
+  border: 1px solid #000;
+  width:8px;
+  height:8px;
+  }
+    .slick-slider .slick-dots li.slick-active{
+      background:#000;
+    }
+.slick-dots {
+    position: absolute;
+    bottom: 8px;
+}
+  
+  .slick-prev {
+    left: 45px;
+  }
+  
+  
+  .slick-prev:before, .slick-next:before {
+    font-family: 'slick';
+    font-size: 35px;
+    line-height: 1;
+    opacity: 1;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #0000005c;
+    border-radius: 100%;
+    padding: 10px 12px;
+}
+  .slick-next:before {
+    content: '→';
+}
+  .slick-prev:before {
+    content: '←';
+}
+  @media(max-width:768px){
+      .slick-prev {
+    left: 25px;
+  }
+    .slick-prev:before, .slick-next:before {
+    font-family: 'slick';
+    font-size: 17px;
+      padding: 5px 6px;
+  }
+</style>
+
+<link href="https://kenwheeler.github.io/slick/slick/slick-theme.css">
+<link href="https://kenwheeler.github.io/slick/slick/slick.css">
+
+<link href="https://kenwheeler.github.io/slick/css/prism.css">
+
+
+
+    <div class="grid responsive">
+      {% for block in section.blocks %}
+ {% if block.settings.main_img != blank %}   
+				<div class="grid__item medium-up--one-sixth text-center">
+          
+                  <a href="{{ block.settings.main_link }}"> 	
+                   
+                    <img src="{{ block.settings.main_img | img_url:'' }}"> 
+                    
+                  
+                  </a>
+                  
+				</div>	
+   {% endif %}     
+{% endfor %}
+
+			</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://kenwheeler.github.io/slick/slick/slick.js"> </script>
+
+<script type="text/javascript">
+$('.responsive').slick({
+  dots: true,
+  infinite: true,
+  autoplay: true,
+    autoplaySpeed: 2000,
+  speed: 300,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  arrows:true,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+</script>
+
+
+
+{% schema %}
+  {
+    "name": "Logo Slider",
+    "settings": [],
+  	"blocks": [
+      {
+        "type": "custom-slideshow",
+        "name": "Slideshow",
+        "settings": [
+            {
+            "type": "image_picker",
+            "id": "main_img",
+            "label" : "Select Image"
+            },
+            
+            {			
+            "type": "url",
+            "id": "main_link",
+            "label" : "Select Button Link"
+            }
+            
+          
+        ]
+      }
+],
+"presets":[
+{
+"name":"Logo Slider",
+"category":"Custom"
+}
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
